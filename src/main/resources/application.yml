@@ -12,13 +12,13 @@ spring:
 swagger:
   config:
     apiInfo:
-      title: Checkout API
-      description: Checkout API.
+      title: Spotipos API
+      description: Spotipos API.
       version: 1.0.0 
       termsOfServiceUrl: Jorge Filho
       contact:
         name: Jorge Filho
         url: https://github.com/jorgefilho
         email: papachristo@gmail.com
-      license: https://github.com/jorgefilho/store
-      licenseUrl: https://github.com/jorgefilho/store
+      license: https://github.com/jorgefilho/spotipos
+      licenseUrl: https://github.com/jorgefilho/spotipos

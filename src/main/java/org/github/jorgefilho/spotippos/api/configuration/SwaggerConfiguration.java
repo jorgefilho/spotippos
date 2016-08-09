@@ -1,5 +1,7 @@
 package org.github.jorgefilho.spotippos.api.configuration;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,6 +19,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.schema.AlternateTypeRule;
+import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.schema.WildcardType;
 import springfox.documentation.service.ApiInfo;
@@ -28,6 +31,7 @@ import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -74,11 +78,10 @@ public class SwaggerConfiguration {
 			.pathMapping("/")
 			.directModelSubstitute(LocalDate.class, String.class)
 			.genericModelSubstitutes(ResponseEntity.class)
-//			.alternateTypeRules(getAlternateTypeRules())
+				.alternateTypeRules(getAlternateTypeRules())
 			.useDefaultResponseMessages(false)
-		//	.globalResponseMessage(RequestMethod.GET, newArrayList(getResponseMessage()))
-		//	.securitySchemes(newArrayList(apiKey()))
-		//	.securityContexts(newArrayList(securityContext()))
+				.globalResponseMessage(RequestMethod.GET, newArrayList(getResponseMessage()))
+				.securitySchemes(newArrayList(apiKey())).securityContexts(newArrayList(securityContext()))
 			.enableUrlTemplating(false);
 	}
 	private Contact contact() {
@@ -90,22 +93,24 @@ public class SwaggerConfiguration {
 	    return apiInfo;
 	}
 
-//	@Bean
-//	SecurityConfiguration security() {
-//		return new SecurityConfiguration("test-app-client-id", "test-app-realm", "test-app", "apiKey", contact, null, contact, contact);
-//	}
+	@Bean
+	SecurityConfiguration security() {
+		return new SecurityConfiguration("test-app-client-id", "test-app-client-secret", "test-app-realm", "test-app",
+				"apiKey", ApiKeyVehicle.HEADER, "api_key",
+				"," /* scope separator */);
+	}
 
 	@Bean
 	UiConfiguration uiConfig() {
 		return new UiConfiguration("validatorUrl");
 	}
 
-//	private AlternateTypeRule getAlternateTypeRules() {
-//		return newRule(
-//				typeResolver.resolve(DeferredResult.class,
-//						typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
-//				typeResolver.resolve(WildcardType.class));
-//	}
+	private AlternateTypeRule getAlternateTypeRules() {
+		return AlternateTypeRules.newRule(
+				typeResolver.resolve(DeferredResult.class,
+						typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
+				typeResolver.resolve(WildcardType.class));
+	}
 
 	private ResponseMessage getResponseMessage() {
 		return new ResponseMessageBuilder()
@@ -118,15 +123,15 @@ public class SwaggerConfiguration {
 		return new ApiKey("mykey", "api_key", "header");
 	}
 
-//	private SecurityContext securityContext() {
-//		return SecurityContext.builder().securityReferences(defaultAuth())
-//				.forPaths(PathSelectors.regex("/anyPath.*")).build();
-//	}
+	private SecurityContext securityContext() {
+		return SecurityContext.builder().securityReferences(defaultAuth()).forPaths(PathSelectors.regex("/anyPath.*"))
+				.build();
+	}
 
-//	List<SecurityReference> defaultAuth() {
-//		final AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-//		final AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-//		authorizationScopes[0] = authorizationScope;
-//		return newArrayList(new SecurityReference("mykey", authorizationScopes));
-//	}
+	List<SecurityReference> defaultAuth() {
+		final AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+		final AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+		authorizationScopes[0] = authorizationScope;
+		return newArrayList(new SecurityReference("mykey", authorizationScopes));
+	}
 }
