@@ -1,1 +1,1 @@
-# spotippos
+# Coding Challenge : Spotippos
