@@ -4,7 +4,7 @@ import org.github.jorgefilho.spotippos.api.controller.domain.RequestProperty;
 
 public class RequestPropertyUtils {
 
-	public static RequestProperty getValidProperty() {
+	public static RequestProperty getValidRequestProperty() {
 		RequestProperty requestProperty = new RequestProperty();
 
 		requestProperty.setX(100);
