@@ -73,7 +73,7 @@ public class SwaggerConfiguration {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 			.apiInfo(this.apiInfo()).select()
-			.apis(RequestHandlerSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage("org.github.jorgefilho.spotippos.api.controller"))
 			.paths(PathSelectors.any()).build()
 			.pathMapping("/")
 			.directModelSubstitute(LocalDate.class, String.class)

@@ -5,5 +5,5 @@ import org.github.jorgefilho.spotippos.api.controller.domain.ResponseProperty;
 
 public interface PropertyService {
 
-	ResponseProperty save(RequestProperty propertu);
+	ResponseProperty save(RequestProperty requestProperty);
 }
