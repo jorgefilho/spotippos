@@ -21,5 +21,4 @@ public class PropertyServiceImpl implements PropertyService {
 		final ResponseProperty responseProperty = Utils.copyProperties(property).get();
 		return responseProperty;
 	}
-
 }

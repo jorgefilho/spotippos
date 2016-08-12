@@ -3,11 +3,13 @@ info:
   application.version: '@project.version@'
 
 spring:
-  data:
-    mongodb:
-      database: spotipos
-      port: 27017
-      
+  h2.console:
+    enabled: true
+    path: /console
+  jpa:
+    hibernate:
+      format_sql: true
+    show-sql: false 
       
 swagger:
   config:

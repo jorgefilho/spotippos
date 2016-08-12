@@ -2,24 +2,55 @@ package org.github.jorgefilho.spotippos.api.repository.domain;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Document
+import org.springframework.data.annotation.Id;
+
+@Entity
+@Table(name = Property.TABLE_NAME)
 public class Property implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	protected static final String TABLE_NAME = "property";
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private Long id;
 
+	private String title;
+
+	private String description;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "axis_id")
 	private Axis axis;
 
+	@Column(nullable = false)
 	private Integer beds;
 
+	@Column(nullable = false)
 	private Integer baths;
 
+	@Column(nullable = false)
 	private Integer squareMeters;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Axis getAxis() {
 		return axis;
@@ -51,10 +82,6 @@ public class Property implements Serializable {
 
 	public void setSquareMeters(Integer squareMeters) {
 		this.squareMeters = squareMeters;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	@Override

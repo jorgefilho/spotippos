@@ -5,41 +5,23 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = Axis.TABLE_NAME)
 public class Axis implements Serializable {
+    private static final long serialVersionUID = -3364480867236820750L;
 
-	private static final long serialVersionUID = 1L;
+    protected static final String TABLE_NAME = "axis";
 
-	@Id
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private Long id;
 
-	private Integer x;
+    @Column(nullable = false)
+    private Integer x;
 
-	private Integer y;
-
-	public Integer getX() {
-		return x;
-	}
-
-	public void setX(Integer x) {
-		this.x = x;
-	}
-
-	public Integer getY() {
-		return y;
-	}
-
-	public void setY(Integer y) {
-		this.y = y;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public String toString() {
-		return "Axis [id=" + id + ", x=" + x + ", y=" + y + "]";
-	}
-
-}
+    @Column(nullable = false)
+    private Integer y;

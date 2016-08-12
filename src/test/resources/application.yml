@@ -6,7 +6,7 @@ spring:
   data:
     mongodb:
       database: spotipos
-      port: 27017
+      port: 0
       
       
 swagger:
