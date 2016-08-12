@@ -16,12 +16,14 @@ public abstract class AbstractProperty {
 	private int y;
 
 	@NotBlank
+	@Max(50)
 	private String title;
 
 	@Min(1)
 	private long price;
 
 	@NotBlank
+	@Max(100)
 	private String description;
 
 	@Min(1)

@@ -27,9 +27,14 @@ public class Property implements Serializable {
 	@Column(unique = true, nullable = false)
 	private Long id;
 
+	@Column(nullable = false)
 	private String title;
 
+	@Column(nullable = false)
 	private String description;
+
+	@Column(nullable = false)
+	private Long price;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "axis_id")
