@@ -6,9 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = Axis.TABLE_NAME)
@@ -28,6 +28,15 @@ public class Axis implements Serializable {
 
     @Column(nullable = false)
     private Integer y;
+
+	public Axis() {
+	}
+
+	public Axis(final Long id, final Integer x, final Integer y) {
+		this.id = id;
+		this.x = x;
+		this.y = y;
+	}
 
 	public Long getId() {
 		return id;

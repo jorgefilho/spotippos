@@ -2,6 +2,7 @@ package org.github.jorgefilho.spotippos.api.controller.domain;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -16,14 +17,14 @@ public abstract class AbstractProperty {
 	private int y;
 
 	@NotBlank
-	@Max(50)
+	@Size(min = 1, max = 50)
 	private String title;
 
 	@Min(1)
-	private long price;
+	private Long price;
 
 	@NotBlank
-	@Max(100)
+	@Size(min = 1, max = 100)
 	private String description;
 
 	@Min(1)
@@ -62,11 +63,11 @@ public abstract class AbstractProperty {
 		this.title = title;
 	}
 
-	public long getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 

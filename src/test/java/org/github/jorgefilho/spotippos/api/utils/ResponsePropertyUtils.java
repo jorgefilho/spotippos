@@ -12,12 +12,16 @@ public class ResponsePropertyUtils {
 		responseProperty.setY(650);
 		responseProperty.setTitle("Title");
 		responseProperty.setDescription("Description");
-		responseProperty.setPrice(100);
+		responseProperty.setPrice(100L);
 		responseProperty.setBaths(1);
 		responseProperty.setBeds(1);
 		responseProperty.setSquareMeters(200);
 
 		return responseProperty;
+	}
+
+	public static ResponseProperty getNullResponseProperty() {
+		return null;
 	}
 
 }

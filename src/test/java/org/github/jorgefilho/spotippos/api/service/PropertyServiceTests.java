@@ -19,7 +19,7 @@ public class PropertyServiceTests {
 
 	@Test
 	public void save_whenRequestPropertyIsValid_shouldReturnResponsePropertySaved() {
-		ResponseProperty responseProperty = propertyService.save(RequestPropertyUtils.getValidRequestProperty());
+		final ResponseProperty responseProperty = propertyService.save(RequestPropertyUtils.getValidRequestProperty());
 
 		Assert.notNull(responseProperty);
 	}

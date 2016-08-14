@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = Property.TABLE_NAME)
@@ -57,6 +57,30 @@ public class Property implements Serializable {
 		this.id = id;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
 	public Axis getAxis() {
 		return axis;
 	}
@@ -91,7 +115,7 @@ public class Property implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Property [id=" + id + ", axis=" + axis + ", beds=" + beds + ", baths=" + baths + ", squareMeters="
-				+ squareMeters + "]";
+		return "Property [id=" + id + ", title=" + title + ", description=" + description + ", price=" + price
+				+ ", axis=" + axis + ", beds=" + beds + ", baths=" + baths + ", squareMeters=" + squareMeters + "]";
 	}
 }
