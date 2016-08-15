@@ -2,20 +2,49 @@ package org.github.jorgefilho.spotippos.api.repository.domain;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Document
+
+@Entity
+@Table(name = Axis.TABLE_NAME)
 public class Axis implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private Long id;
+	protected static final String TABLE_NAME = "axis";
 
-	private Integer x;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private Long id;
 
-	private Integer y;
+    @Column(nullable = false)
+    private Integer x;
+
+    @Column(nullable = false)
+    private Integer y;
+
+	public Axis() {
+	}
+
+	public Axis(final Long id, final Integer x, final Integer y) {
+		this.id = id;
+		this.x = x;
+		this.y = y;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Integer getX() {
 		return x;
@@ -33,13 +62,8 @@ public class Axis implements Serializable {
 		this.y = y;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	@Override
 	public String toString() {
 		return "Axis [id=" + id + ", x=" + x + ", y=" + y + "]";
 	}
-
 }
